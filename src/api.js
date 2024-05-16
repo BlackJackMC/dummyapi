@@ -1,8 +1,8 @@
 const express = require("express");
 const helmet = require("helmet");
-const http = require("http");
+const http = require("serverless-http");
 const cors = require("cors");
-const database = require("./database");
+const database = require("../config/database");
 const { routes } = require("./routes");
 
 const cors_options = {
@@ -12,7 +12,6 @@ const cors_options = {
 };
 
 const app = express();
-const server = http.createServer(app);
 
 app.use((req, res, next) => {
   const now = new Date().toISOString();
@@ -54,6 +53,5 @@ shutdown = async () => {
   await database.disconnect();
 };
 
-server.listen(80, startup);
-server.on("close", shutdown);
-process.on("SIGTERM", shutdown);
+
+module.exports.handler = serverless(app);
