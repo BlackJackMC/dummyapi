@@ -1,8 +1,8 @@
 const express = require("express");
 const helmet = require("helmet");
-const http = require("serverless-http");
+const serverless = require("serverless-http");
 const cors = require("cors");
-const database = require("../config/database");
+const database = require("./config/database");
 const { routes } = require("./routes");
 
 const cors_options = {
