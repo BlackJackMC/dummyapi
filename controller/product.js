@@ -24,14 +24,12 @@ getProduct = async (req, res) => {
       option.limit = parseInt(limit);
     }
 
-    console.log(query);
 
     const product = await db
       .collection("product")
       .find(query, option)
       .toArray();
 
-    console.log(product.length);
 
     res.status(200).json(product);
   } catch (e) {
