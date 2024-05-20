@@ -54,6 +54,6 @@ shutdown = async () => {
   await database.disconnect();
 };
 
-server.listen(80, startup);
+server.listen(process.env.PORT || 80, startup);
 server.on("close", shutdown);
 process.on("SIGTERM", shutdown);
