@@ -1,6 +1,6 @@
 const { getDB } = require("../database");
 
-getproducts = async (req, res) => {
+getProducts = async (req, res) => {
   try {
     const db = getDB();
     const query = {};
