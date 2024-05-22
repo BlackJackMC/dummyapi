@@ -1,5 +1,5 @@
 const express = require("express");
-const { product } = require("./router/product");
+const { products } = require("./router/products");
 const routes = express.Router();
 
 routes.get("/", (req, res) => {
@@ -10,7 +10,7 @@ routes.get("/ping", (req, res) => {
   res.send(`<p> Pong </p>`);
 });
 
-routes.use("/product", product);
+routes.use("/products", products);
 
 module.exports = {
   routes,
