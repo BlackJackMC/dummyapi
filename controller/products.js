@@ -1,6 +1,6 @@
 const { getDB } = require("../database");
 
-getProduct = async (req, res) => {
+getproducts = async (req, res) => {
   try {
     const db = getDB();
     const query = {};
@@ -25,18 +25,18 @@ getProduct = async (req, res) => {
     }
 
 
-    const product = await db
-      .collection("product")
+    const products = await db
+      .collection("products")
       .find(query, option)
       .toArray();
 
 
-    res.status(200).json(product);
+    res.status(200).json(products);
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 };
 
 module.exports = {
-  getProduct,
+  getproducts,
 };
