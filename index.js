@@ -1,9 +1,14 @@
+require('dotenv').config();
+
+
 const express = require("express");
 const helmet = require("helmet");
 const http = require("http");
 const cors = require("cors");
 const database = require("./database");
 const { routes } = require("./routes");
+
+
 
 const cors_options = {
   origin: "*",
