@@ -26,7 +26,7 @@ getProducts = async (req, res) => {
 
 
     const products = await db
-      .collection("products")
+      .collection(process.env["DB_PRODUCT_NAME"])
       .find(query, option)
       .toArray();
 
