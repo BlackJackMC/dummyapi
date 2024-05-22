@@ -38,5 +38,5 @@ getProducts = async (req, res) => {
 };
 
 module.exports = {
-  getproducts,
+  getProducts,
 };
