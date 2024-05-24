@@ -21,7 +21,7 @@ const server = http.createServer(app);
 
 app.use((req, res, next) => {
   const now = new Date().toISOString();
-  console.log(`[${now}] ${req.method} ${req.url}`);
+  console.log(`[${now}][${req.ip}] ${req.method} ${req.url}`);
   next();
 });
 
@@ -50,12 +50,12 @@ app.use((err, req, res, next) => {
   }
 });
 
-startup = async () => {
+const startup = async () => {
   await database.connect();
   console.log("Server is listening on port 80");
 };
 
-shutdown = async () => {
+const shutdown = async () => {
   await database.disconnect();
 };
 
