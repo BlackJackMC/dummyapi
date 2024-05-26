@@ -6,7 +6,7 @@ getProducts = async (req, res) => {
     const query = {};
     const option = {};
 
-    const { name, minPrice, maxPrice, limit } = req.query;
+    const { name, minPrice, maxPrice, start = 1, end = 4 } = req.query;
 
     if (name) {
       query.name = RegExp(name, "i");
@@ -20,9 +20,10 @@ getProducts = async (req, res) => {
       query.price = { ...query.price, $lte: parseInt(maxPrice) };
     }
 
-    if (limit) {
-      option.limit = parseInt(limit);
-    }
+    const start_int = parseInt(start);
+    const end_int = parseInt(end);
+    option.skip = start_int - 1;
+    option.limit = end_int - start_int + 1;
 
 
     const products = await db
