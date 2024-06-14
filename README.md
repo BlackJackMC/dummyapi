@@ -13,6 +13,28 @@ https://dummyapi-0uzr.onrender.com
 
 ## Endpoints
 
+### Get a introduction
+
+- URL: `/`
+- Method: `GET`
+- Response:
+    - Status: `200 OK`
+    - Body:
+    ```html
+    <p> An API for web training in LHPSC </p>
+    ```
+
+### Get a pong
+
+- URL: `/ping`
+- Method: `GET`
+- Response:
+    - Status: `200 OK`
+    - Body:
+    ```html
+    <p> Pong </p>
+    ```
+
 ### Get a list of products
 
 - URL: `/products`
