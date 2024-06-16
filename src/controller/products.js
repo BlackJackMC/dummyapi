@@ -5,8 +5,9 @@ getProducts = async (req, res) => {
     const db = getDB();
     const query = {};
     const option = {};
+    const productPerPage = 8;
 
-    const { name, minPrice, maxPrice, start = 1, end = 4 } = req.query;
+    const { name, minPrice, maxPrice, skip, limit } = req.query;
 
     if (name) {
       query.name = RegExp(name, "i");
@@ -20,10 +21,8 @@ getProducts = async (req, res) => {
       query.price = { ...query.price, $lte: parseInt(maxPrice) };
     }
 
-    const start_int = parseInt(start);
-    const end_int = parseInt(end);
-    option.skip = start_int - 1;
-    option.limit = end_int - start_int + 1;
+    option.limit =  parseInt(limit) || productPerPage;
+    option.skip = parseInt(skip) || 0;
 
 
     const products = await db
@@ -32,7 +31,10 @@ getProducts = async (req, res) => {
       .toArray();
 
 
-    res.status(200).json(products);
+    res.status(200).json({
+        "product_list": products,
+        "metadata": req.query
+  });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
